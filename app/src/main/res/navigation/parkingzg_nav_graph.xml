@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:app="http://schemas.android.com/apk/res-auto"
-             android:id="@+id/parkingzg_nav_graph">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parkingzg_nav_graph"
+    app:startDestination="@id/vehicleListFragment">
 
+    <fragment
+        android:id="@+id/vehicleListFragment"
+        android:name="com.zvonimirplivelic.parkingzg.ui.fragment.VehicleListFragment"
+        android:label="Vehicle List" >
+        <action
+            android:id="@+id/action_vehicleListFragment_to_addVehicleFragment"
+            app:destination="@id/addVehicleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addVehicleFragment"
+        android:name="com.zvonimirplivelic.parkingzg.ui.fragment.AddVehicleFragment"
+        android:label="Add your vehicle"
+        tools:layout="@layout/fragment_add_vehicle" >
+        <action
+            android:id="@+id/action_addVehicleFragment_to_vehicleListFragment"
+            app:destination="@id/vehicleListFragment" />
+    </fragment>
 </navigation>

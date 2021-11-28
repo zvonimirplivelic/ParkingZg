@@ -11,7 +11,7 @@ import kotlinx.android.parcel.Parcelize
 data class Vehicle(
     @PrimaryKey(autoGenerate = true)
     val vehicleId: Int,
-    val vehicleDetails: String,
+    val vehicleModel: String,
     val vehicleManufacturer: String,
     val vehicleRegistrationNumber: String
 ): Parcelable

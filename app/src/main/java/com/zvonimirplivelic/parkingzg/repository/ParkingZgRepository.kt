@@ -1,4 +1,4 @@
-package com.zvonimirplivelic.parkingzg
+package com.zvonimirplivelic.parkingzg.repository
 
 import androidx.lifecycle.LiveData
 import com.zvonimirplivelic.parkingzg.db.ParkingZgDao
