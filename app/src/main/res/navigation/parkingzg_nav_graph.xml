@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_vehicleListFragment_to_addVehicleFragment"
             app:destination="@id/addVehicleFragment" />
+        <action
+            android:id="@+id/action_vehicleListFragment_to_vehicleInfoFragment"
+            app:destination="@id/vehicleInfoFragment" />
     </fragment>
     <fragment
         android:id="@+id/addVehicleFragment"
@@ -21,5 +24,16 @@
         <action
             android:id="@+id/action_addVehicleFragment_to_vehicleListFragment"
             app:destination="@id/vehicleListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/vehicleInfoFragment"
+        android:name="com.zvonimirplivelic.parkingzg.ui.fragment.VehicleInfoFragment"
+        android:label="Vehicle Information" >
+        <action
+            android:id="@+id/action_vehicleInfoFragment_to_vehicleListFragment"
+            app:destination="@id/vehicleListFragment" />
+        <argument
+            android:name="currentVehicle"
+            app:argType="com.zvonimirplivelic.parkingzg.db.Vehicle" />
     </fragment>
 </navigation>

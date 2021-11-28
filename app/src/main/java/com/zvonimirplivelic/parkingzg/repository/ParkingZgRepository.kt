@@ -10,4 +10,8 @@ class ParkingZgRepository(private val parkingZgDao: ParkingZgDao) {
     suspend fun addVehicle(vehicle: Vehicle) {
         parkingZgDao.addVehicle(vehicle)
     }
+
+    suspend fun updateVehicle(vehicle: Vehicle) {
+        parkingZgDao.updateVehicle(vehicle)
+    }
 }

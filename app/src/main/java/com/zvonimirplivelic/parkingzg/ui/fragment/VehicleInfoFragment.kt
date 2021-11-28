@@ -1,60 +1,80 @@
 package com.zvonimirplivelic.parkingzg.ui.fragment
 
+import android.app.AlertDialog
 import android.os.Bundle
+import android.text.TextUtils
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.zvonimirplivelic.parkingzg.R
+import com.zvonimirplivelic.parkingzg.db.Vehicle
+import com.zvonimirplivelic.parkingzg.viewmodel.ParkingZgViewModel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [VehicleInfoFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class VehicleInfoFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private val args by navArgs<VehicleInfoFragmentArgs>()
+
+    private lateinit var viewModel: ParkingZgViewModel
+
+    private lateinit var etUpdateVehicleModel: EditText
+    private lateinit var etUpdateVehicleManufacturer: EditText
+    private lateinit var etUpdateVehicleRegistrationNumber: EditText
+    private lateinit var btnUpdateVehicle: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_vehicle_info, container, false)
+        val view = inflater.inflate(R.layout.fragment_vehicle_info, container, false)
+        setHasOptionsMenu(true)
+
+        viewModel = ViewModelProvider(this)[ParkingZgViewModel::class.java]
+
+        etUpdateVehicleModel = view.findViewById(R.id.et_vehicle_info_model)
+        etUpdateVehicleManufacturer = view.findViewById(R.id.et_vehicle_info_manufacturer)
+        etUpdateVehicleRegistrationNumber =
+            view.findViewById(R.id.et_vehicle_info_registration_number)
+        btnUpdateVehicle = view.findViewById(R.id.btn_update_info)
+
+
+        etUpdateVehicleModel.setText(args.currentVehicle.vehicleModel)
+        etUpdateVehicleManufacturer.setText(args.currentVehicle.vehicleManufacturer)
+        etUpdateVehicleRegistrationNumber.setText(args.currentVehicle.vehicleRegistrationNumber)
+
+        btnUpdateVehicle.setOnClickListener {
+            updateVehicle()
+        }
+
+        return view
+    }
+    private fun updateVehicle() {
+        val vehicleModel = etUpdateVehicleModel.text.toString()
+        val vehicleManufacturer = etUpdateVehicleManufacturer.text.toString()
+        val vehicleRegistrationNumber = etUpdateVehicleRegistrationNumber.text.toString()
+
+        if (validateUserInput(vehicleModel,vehicleManufacturer, vehicleRegistrationNumber)) {
+            val updatedVehicle = Vehicle(args.currentVehicle.vehicleId, vehicleModel, vehicleManufacturer, vehicleRegistrationNumber)
+            viewModel.updateVehicle(updatedVehicle)
+            Toast.makeText(requireContext(), "Successfully updated task", Toast.LENGTH_LONG).show()
+            findNavController().navigate(R.id.action_vehicleInfoFragment_to_vehicleListFragment)
+        } else {
+            Toast.makeText(requireContext(), "Please fill out the fields!", Toast.LENGTH_LONG)
+                .show()
+        }
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment VehicleInfoFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            VehicleInfoFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    private fun validateUserInput(
+        vehicleModel: String,
+        vehicleManufacturer: String,
+        vehicleRegistrationNumber: String
+    ): Boolean {
+        return !(TextUtils.isEmpty(vehicleModel) ||
+                TextUtils.isEmpty(vehicleManufacturer) ||
+                TextUtils.isEmpty(vehicleRegistrationNumber))
     }
 }

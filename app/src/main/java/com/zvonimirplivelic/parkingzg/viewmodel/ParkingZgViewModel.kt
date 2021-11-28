@@ -10,7 +10,7 @@ import com.zvonimirplivelic.parkingzg.repository.ParkingZgRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class ParkingZgViewModel(application: Application): AndroidViewModel(application) {
+class ParkingZgViewModel(application: Application) : AndroidViewModel(application) {
 
     val getAllVehicles: LiveData<List<Vehicle>>
     private val repository: ParkingZgRepository
@@ -24,6 +24,12 @@ class ParkingZgViewModel(application: Application): AndroidViewModel(application
     fun addVehicle(vehicle: Vehicle) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.addVehicle(vehicle)
+        }
+    }
+
+    fun updateVehicle(vehicle: Vehicle) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateVehicle(vehicle)
         }
     }
 }
