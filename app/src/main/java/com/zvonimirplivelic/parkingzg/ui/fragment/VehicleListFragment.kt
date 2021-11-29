@@ -1,10 +1,10 @@
 package com.zvonimirplivelic.parkingzg.ui.fragment
 
+import android.app.AlertDialog
 import android.os.Bundle
+import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,6 +26,7 @@ class VehicleListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_vehicle_list, container, false)
+        setHasOptionsMenu(true)
 
         vehicleListAdapter = VehicleListAdapter()
         recyclerView = view.findViewById(R.id.rv_vehicle_list)
@@ -48,4 +49,39 @@ class VehicleListFragment : Fragment() {
         }
         return view
     }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        return inflater.inflate(R.menu.vehicle_list_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_delete_all -> deleteAllVehicles()
+        }
+        return super.onOptionsItemSelected(item)
+
+    }
+
+    private fun deleteAllVehicles() {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.apply {
+            setTitle("Delete all vehicles?")
+            setMessage("Do you want to delete all vehicles?")
+            setPositiveButton("Delete all") { _, _ ->
+
+                viewModel.deleteAllVehicles()
+
+                Toast.makeText(
+                    requireContext(),
+                    "Successfully deleted all vehicles",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+            setNegativeButton("Cancel") { _, _ ->
+
+            }
+            create().show()
+        }
+    }
+
 }

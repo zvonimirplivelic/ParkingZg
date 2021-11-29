@@ -14,6 +14,9 @@ interface ParkingZgDao {
     @Delete
     suspend fun deleteVehicle(vehicle: Vehicle)
 
+    @Query("DELETE FROM vehicle_table")
+    fun deleteAllVehicles()
+
     @Query("SELECT * FROM vehicle_table ORDER BY vehicleId ASC")
     fun getAllTasks(): LiveData<List<Vehicle>>
 }

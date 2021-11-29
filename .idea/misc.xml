@@ -11,6 +11,8 @@
         <entry key="app/src/main/res/layout/fragment_vehilce_list.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/layout/vehicle_list_item.xml" value="0.15942028985507245" />
         <entry key="app/src/main/res/menu/vehicle_info_menu.xml" value="0.1" />
+        <entry key="app/src/main/res/menu/vehicle_list_menu.xml" value="0.19322916666666667" />
+        <entry key="app/src/main/res/xml/root_preferences.xml" value="0.1526268115942029" />
       </map>
     </option>
   </component>
