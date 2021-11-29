@@ -52,13 +52,57 @@ class VehicleInfoFragment : Fragment() {
 
         return view
     }
+
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.vehicle_info_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_delete -> deleteVehicle()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+
+    private fun deleteVehicle() {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.apply {
+            setTitle("Delete ${args.currentVehicle.vehicleManufacturer} ${args.currentVehicle.vehicleModel}?")
+            setMessage("Do you want to delete ${args.currentVehicle.vehicleManufacturer} ${args.currentVehicle.vehicleModel} from the list?")
+            setPositiveButton("Delete") { _, _ ->
+
+                viewModel.deleteVehicle(args.currentVehicle)
+
+                Toast.makeText(
+                    requireContext(),
+                    "Successfully deleted ${args.currentVehicle.vehicleManufacturer} ${args.currentVehicle.vehicleModel}",
+                    Toast.LENGTH_LONG
+                ).show()
+
+                findNavController().navigate(R.id.action_vehicleInfoFragment_to_vehicleListFragment)
+            }
+            setNegativeButton("No") { _, _ ->
+
+            }
+            create().show()
+        }
+    }
+
+
     private fun updateVehicle() {
         val vehicleModel = etUpdateVehicleModel.text.toString()
         val vehicleManufacturer = etUpdateVehicleManufacturer.text.toString()
         val vehicleRegistrationNumber = etUpdateVehicleRegistrationNumber.text.toString()
 
-        if (validateUserInput(vehicleModel,vehicleManufacturer, vehicleRegistrationNumber)) {
-            val updatedVehicle = Vehicle(args.currentVehicle.vehicleId, vehicleModel, vehicleManufacturer, vehicleRegistrationNumber)
+        if (validateUserInput(vehicleModel, vehicleManufacturer, vehicleRegistrationNumber)) {
+            val updatedVehicle = Vehicle(
+                args.currentVehicle.vehicleId,
+                vehicleModel,
+                vehicleManufacturer,
+                vehicleRegistrationNumber
+            )
             viewModel.updateVehicle(updatedVehicle)
             Toast.makeText(requireContext(), "Successfully updated task", Toast.LENGTH_LONG).show()
             findNavController().navigate(R.id.action_vehicleInfoFragment_to_vehicleListFragment)

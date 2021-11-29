@@ -14,4 +14,8 @@ class ParkingZgRepository(private val parkingZgDao: ParkingZgDao) {
     suspend fun updateVehicle(vehicle: Vehicle) {
         parkingZgDao.updateVehicle(vehicle)
     }
+
+    suspend fun deleteVehicle(vehicle: Vehicle) {
+        parkingZgDao.deleteVehicle(vehicle)
+    }
 }

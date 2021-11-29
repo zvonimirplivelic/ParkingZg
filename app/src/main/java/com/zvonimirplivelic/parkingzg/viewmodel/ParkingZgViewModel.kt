@@ -32,4 +32,10 @@ class ParkingZgViewModel(application: Application) : AndroidViewModel(applicatio
             repository.updateVehicle(vehicle)
         }
     }
+
+    fun deleteVehicle(vehicle: Vehicle) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteVehicle(vehicle)
+        }
+    }
 }
