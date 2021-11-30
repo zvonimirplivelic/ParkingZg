@@ -79,7 +79,7 @@
             layout="@layout/horizontal_line"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:layout_marginVertical="4dp" />
+            android:layout_marginVertical="8dp" />
 
         <LinearLayout
             android:id="@+id/expandable_buttons_layout"
@@ -96,24 +96,27 @@
                 android:id="@+id/btn_zone_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
                 android:layout_weight="1"
-                android:backgroundTint="@android:color/holo_green_dark"
+                android:backgroundTint="@color/red"
                 android:text="Zone 1" />
 
             <Button
                 android:id="@+id/btn_zone_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
                 android:layout_weight="1"
-                android:backgroundTint="@android:color/holo_green_dark"
+                android:backgroundTint="@color/yellow"
                 android:text="Zone 2" />
 
             <Button
                 android:id="@+id/btn_zone_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
                 android:layout_weight="1"
-                android:backgroundTint="@android:color/holo_green_dark"
+                android:backgroundTint="@color/green"
                 android:text="Zone 3" />
 
         </LinearLayout>

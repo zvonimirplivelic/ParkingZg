@@ -1,5 +1,6 @@
 package com.zvonimirplivelic.parkingzg.ui.adapter
 
+import android.telephony.SmsManager
 import android.transition.AutoTransition
 import android.transition.TransitionManager
 import android.view.LayoutInflater
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.zvonimirplivelic.parkingzg.R
 import com.zvonimirplivelic.parkingzg.db.Vehicle
 import com.zvonimirplivelic.parkingzg.ui.fragment.VehicleListFragmentDirections
+import com.zvonimirplivelic.parkingzg.util.Constants
 
 class VehicleListAdapter : RecyclerView.Adapter<VehicleListAdapter.VehicleViewHolder>() {
 
@@ -60,6 +62,17 @@ class VehicleListAdapter : RecyclerView.Adapter<VehicleListAdapter.VehicleViewHo
         clickableInfoCard.setOnClickListener {
             expandCardView(vehicleInfoCardExpandable, clickableInfoCard)
         }
+
+        btnZoneOne.setOnClickListener {
+            payTicket(Constants.ZONE_TEST, currentVehicle.vehicleRegistrationNumber)
+        }
+        btnZoneTwo.setOnClickListener {
+            payTicket(Constants.ZONE_TEST, currentVehicle.vehicleRegistrationNumber)
+
+        }
+        btnZoneThree.setOnClickListener {
+            payTicket(Constants.ZONE_TEST, currentVehicle.vehicleRegistrationNumber)
+        }
     }
 
     override fun getItemCount(): Int = vehicleList.size
@@ -80,5 +93,10 @@ class VehicleListAdapter : RecyclerView.Adapter<VehicleListAdapter.VehicleViewHo
             TransitionManager.beginDelayedTransition(expandableClickable, AutoTransition())
             expandableLayout.visibility = View.GONE
         }
+    }
+
+    private fun payTicket(phoneNumber: String, registrationNumber: String) {
+        val smsManager: SmsManager = SmsManager.getDefault()
+        smsManager.sendTextMessage(phoneNumber, null, registrationNumber, null, null)
     }
 }
