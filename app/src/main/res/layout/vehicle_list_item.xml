@@ -7,93 +7,115 @@
     android:layout_height="wrap_content"
     android:layout_marginVertical="8dp"
     android:backgroundTint="@android:color/darker_gray"
-    app:cardCornerRadius="4dp">
+    app:cardCornerRadius="8dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tv_vehicle_model"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_vehicle_image"
+                android:layout_width="128dp"
+                android:layout_height="128dp"
+                android:layout_margin="16dp"
+                android:background="@android:color/background_light"
+                android:elevation="3dp"
+                android:src="@drawable/ic_vehicle_placeholder"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_vehicle_manufacturer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:textColor="@color/black"
+                app:layout_constraintLeft_toRightOf="@+id/iv_vehicle_image"
+                app:layout_constraintRight_toLeftOf="@id/tv_vehicle_model"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Opel" />
+
+            <TextView
+                android:id="@+id/tv_vehicle_model"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toRightOf="@id/tv_vehicle_manufacturer"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Astra" />
+
+            <TextView
+                android:id="@+id/tv_vehicle_registration_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/iv_vehicle_image"
+                app:layout_constraintRight_toLeftOf="@id/iv_vehicle_info"
+                app:layout_constraintTop_toBottomOf="@id/tv_vehicle_manufacturer"
+                tools:text="ZG1234AB" />
+
+            <ImageView
+                android:id="@+id/iv_vehicle_info"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_margin="16dp"
+                android:src="@drawable/ic_info"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <include
+            layout="@layout/horizontal_line"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@id/tv_vehicle_manufacturer"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Astra" />
-
-        <TextView
-            android:id="@+id/tv_vehicle_manufacturer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:textColor="@color/black"
-            app:layout_constraintBottom_toTopOf="@id/expandable_pay_buttons_layout"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_vehicle_model"
-            tools:text="Opel" />
-
-        <TextView
-            android:id="@+id/tv_vehicle_registration_number"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:textColor="@color/black"
-            app:layout_constraintBottom_toTopOf="@id/expandable_pay_buttons_layout"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="ZG1234AB" />
-
-        <ImageView
-            android:id="@+id/iv_vehicle_info"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_margin="16dp"
-            android:src="@drawable/ic_info"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_vehicle_manufacturer" />
+            android:layout_width="match_parent"
+            android:layout_marginVertical="4dp" />
 
         <LinearLayout
-            android:id="@+id/expandable_pay_buttons_layout"
+            android:id="@+id/expandable_buttons_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:visibility="gone"
             android:weightSum="3"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_vehicle_info">
+            app:layout_constraintTop_toBottomOf="@+id/extendable_separator">
 
             <Button
-                android:id="@+id/btn_zone_one"
-                android:layout_width="wrap_content"
+                android:id="@+id/btn_zone_1"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="@android:color/holo_green_dark"
                 android:text="Zone 1" />
 
             <Button
-                android:id="@+id/btn_zone_two"
-                android:layout_width="wrap_content"
+                android:id="@+id/btn_zone_2"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="@android:color/holo_orange_dark"
+                android:backgroundTint="@android:color/holo_green_dark"
                 android:text="Zone 2" />
 
             <Button
-                android:id="@+id/btn_zone_three"
-                android:layout_width="wrap_content"
+                android:id="@+id/btn_zone_3"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="@android:color/holo_red_dark"
+                android:backgroundTint="@android:color/holo_green_dark"
                 android:text="Zone 3" />
+
         </LinearLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+    </LinearLayout>
 </androidx.cardview.widget.CardView>

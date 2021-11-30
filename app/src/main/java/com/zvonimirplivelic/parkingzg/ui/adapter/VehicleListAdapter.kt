@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.zvonimirplivelic.parkingzg.R
@@ -31,8 +32,8 @@ class VehicleListAdapter : RecyclerView.Adapter<VehicleListAdapter.VehicleViewHo
     override fun onBindViewHolder(holder: VehicleViewHolder, position: Int) {
         val currentVehicle = vehicleList[position]
 
-        var vehicleInfoCard = holder.itemView.findViewById<CardView>(R.id.vehicle_list_item)
-        var vehicleInfoCardExpandable = holder.itemView.findViewById<LinearLayout>(R.id.expandable_pay_buttons_layout)
+        var clickableInfoCard = holder.itemView.findViewById<CardView>(R.id.vehicle_list_item)
+        var vehicleInfoCardExpandable = holder.itemView.findViewById<LinearLayout>(R.id.expandable_buttons_layout)
 
         var tvVehicleModel = holder.itemView.findViewById<TextView>(R.id.tv_vehicle_model)
         var tvVehicleManufacturer =
@@ -41,9 +42,9 @@ class VehicleListAdapter : RecyclerView.Adapter<VehicleListAdapter.VehicleViewHo
             holder.itemView.findViewById<TextView>(R.id.tv_vehicle_registration_number)
 
         var ivVehicleInfo = holder.itemView.findViewById<ImageView>(R.id.iv_vehicle_info)
-        var btnZoneOne = holder.itemView.findViewById<Button>(R.id.btn_zone_one)
-        var btnZoneTwo = holder.itemView.findViewById<Button>(R.id.btn_zone_two)
-        var btnZoneThree = holder.itemView.findViewById<Button>(R.id.btn_zone_three)
+        var btnZoneOne = holder.itemView.findViewById<Button>(R.id.btn_zone_1)
+        var btnZoneTwo = holder.itemView.findViewById<Button>(R.id.btn_zone_2)
+        var btnZoneThree = holder.itemView.findViewById<Button>(R.id.btn_zone_3)
 
         tvVehicleModel.text = currentVehicle.vehicleModel
         tvVehicleManufacturer.text = currentVehicle.vehicleManufacturer
@@ -56,8 +57,8 @@ class VehicleListAdapter : RecyclerView.Adapter<VehicleListAdapter.VehicleViewHo
             it.findNavController().navigate(action)
         }
 
-        vehicleInfoCard.setOnClickListener {
-            expandCardView(vehicleInfoCardExpandable, vehicleInfoCard)
+        clickableInfoCard.setOnClickListener {
+            expandCardView(vehicleInfoCardExpandable, clickableInfoCard)
         }
     }
 
@@ -70,13 +71,13 @@ class VehicleListAdapter : RecyclerView.Adapter<VehicleListAdapter.VehicleViewHo
 
     private fun expandCardView(
         expandableLayout: LinearLayout,
-        expandableCard: CardView
+        expandableClickable: CardView
     ) {
         if (expandableLayout.visibility == View.GONE) {
-            TransitionManager.beginDelayedTransition(expandableCard, AutoTransition())
+            TransitionManager.beginDelayedTransition(expandableClickable, AutoTransition())
             expandableLayout.visibility = View.VISIBLE
         } else {
-            TransitionManager.beginDelayedTransition(expandableCard, AutoTransition())
+            TransitionManager.beginDelayedTransition(expandableClickable, AutoTransition())
             expandableLayout.visibility = View.GONE
         }
     }
