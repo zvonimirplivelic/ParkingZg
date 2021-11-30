@@ -64,14 +64,14 @@ class VehicleListAdapter : RecyclerView.Adapter<VehicleListAdapter.VehicleViewHo
         }
 
         btnZoneOne.setOnClickListener {
-            payTicket(Constants.ZONE_TEST, currentVehicle.vehicleRegistrationNumber)
+//            payTicket(Constants.ZONE_ONE, currentVehicle.vehicleRegistrationNumber)
         }
         btnZoneTwo.setOnClickListener {
-            payTicket(Constants.ZONE_TEST, currentVehicle.vehicleRegistrationNumber)
+//            payTicket(Constants.ZONE_TWO, currentVehicle.vehicleRegistrationNumber)
 
         }
         btnZoneThree.setOnClickListener {
-            payTicket(Constants.ZONE_TEST, currentVehicle.vehicleRegistrationNumber)
+//            payTicket(Constants.ZONE_THREE, currentVehicle.vehicleRegistrationNumber)
         }
     }
 
