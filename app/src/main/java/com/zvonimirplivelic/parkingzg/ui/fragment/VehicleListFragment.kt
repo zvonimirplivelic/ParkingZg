@@ -19,7 +19,6 @@ class VehicleListFragment : Fragment() {
     private lateinit var viewModel: ParkingZgViewModel
     private lateinit var recyclerView: RecyclerView
     private lateinit var vehicleListAdapter: VehicleListAdapter
-    private lateinit var fabAddVehicle: FloatingActionButton
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,7 +29,6 @@ class VehicleListFragment : Fragment() {
 
         vehicleListAdapter = VehicleListAdapter()
         recyclerView = view.findViewById(R.id.rv_vehicle_list)
-        fabAddVehicle = view.findViewById(R.id.fab_add_vehicle)
 
         recyclerView.apply {
             adapter = vehicleListAdapter
@@ -42,11 +40,6 @@ class VehicleListFragment : Fragment() {
             vehicleListAdapter.setData(vehicleList)
         })
 
-
-
-        fabAddVehicle.setOnClickListener {
-            findNavController().navigate(R.id.action_vehicleListFragment_to_addVehicleFragment)
-        }
         return view
     }
 
@@ -57,6 +50,7 @@ class VehicleListFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_delete_all -> deleteAllVehicles()
+            R.id.action_add_vehicle -> findNavController().navigate(R.id.action_vehicleListFragment_to_addVehicleFragment)
         }
         return super.onOptionsItemSelected(item)
 

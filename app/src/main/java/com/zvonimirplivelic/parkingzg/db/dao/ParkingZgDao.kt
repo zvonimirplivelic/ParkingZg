@@ -1,7 +1,9 @@
-package com.zvonimirplivelic.parkingzg.db
+package com.zvonimirplivelic.parkingzg.db.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.zvonimirplivelic.parkingzg.db.model.Vehicle
+import com.zvonimirplivelic.parkingzg.db.relations.VehicleWithTickets
 
 @Dao
 interface ParkingZgDao {
@@ -16,6 +18,10 @@ interface ParkingZgDao {
 
     @Query("DELETE FROM vehicle_table")
     fun deleteAllVehicles()
+
+    @Transaction
+    @Query("SELECT * FROM vehicle_table WHERE vehicleId = :vehicleId")
+    fun getVehicleWithTickets(vehicleId: Int): LiveData<List<VehicleWithTickets>>
 
     @Query("SELECT * FROM vehicle_table ORDER BY vehicleId ASC")
     fun getAllTasks(): LiveData<List<Vehicle>>

@@ -1,8 +1,8 @@
 package com.zvonimirplivelic.parkingzg.repository
 
 import androidx.lifecycle.LiveData
-import com.zvonimirplivelic.parkingzg.db.ParkingZgDao
-import com.zvonimirplivelic.parkingzg.db.Vehicle
+import com.zvonimirplivelic.parkingzg.db.dao.ParkingZgDao
+import com.zvonimirplivelic.parkingzg.db.model.Vehicle
 
 class ParkingZgRepository(private val parkingZgDao: ParkingZgDao) {
     val getAllVehicles: LiveData<List<Vehicle>> = parkingZgDao.getAllTasks()

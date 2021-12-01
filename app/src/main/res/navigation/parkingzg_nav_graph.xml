@@ -15,9 +15,6 @@
         <action
             android:id="@+id/action_vehicleListFragment_to_vehicleInfoFragment"
             app:destination="@id/vehicleInfoFragment" />
-        <action
-            android:id="@+id/action_vehicleListFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/addVehicleFragment"
@@ -37,14 +34,6 @@
             app:destination="@id/vehicleListFragment" />
         <argument
             android:name="currentVehicle"
-            app:argType="com.zvonimirplivelic.parkingzg.db.Vehicle" />
+            app:argType="com.zvonimirplivelic.parkingzg.db.model.Vehicle" />
     </fragment>
-    <fragment
-        android:id="@+id/settingsFragment"
-        android:name="com.zvonimirplivelic.parkingzg.SettingsFragment"
-        android:label="SettingsFragment" >
-        <action
-            android:id="@+id/action_settingsFragment_to_vehicleListFragment"
-            app:destination="@id/vehicleListFragment" />
-    </fragment>
-</navigation>
+   </navigation>

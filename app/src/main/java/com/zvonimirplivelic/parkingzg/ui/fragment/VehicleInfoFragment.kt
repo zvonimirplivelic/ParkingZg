@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.zvonimirplivelic.parkingzg.R
-import com.zvonimirplivelic.parkingzg.db.Vehicle
+import com.zvonimirplivelic.parkingzg.db.model.Vehicle
 import com.zvonimirplivelic.parkingzg.viewmodel.ParkingZgViewModel
 
 class VehicleInfoFragment : Fragment() {

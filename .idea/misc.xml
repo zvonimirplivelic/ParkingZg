@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/ic_add.xml" value="0.209375" />
         <entry key="app/src/main/res/drawable/ic_delete.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_vehicle_placeholder.xml" value="0.10520833333333333" />
         <entry key="app/src/main/res/drawable/separator.xml" value="0.209375" />

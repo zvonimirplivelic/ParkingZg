@@ -12,9 +12,8 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.zvonimirplivelic.parkingzg.R
-import com.zvonimirplivelic.parkingzg.db.Vehicle
+import com.zvonimirplivelic.parkingzg.db.model.Vehicle
 import com.zvonimirplivelic.parkingzg.viewmodel.ParkingZgViewModel
-import timber.log.Timber
 
 class AddVehicleFragment : Fragment() {
     private lateinit var viewModel: ParkingZgViewModel

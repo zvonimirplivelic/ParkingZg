@@ -4,8 +4,11 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.zvonimirplivelic.parkingzg.db.dao.ParkingZgDao
+import com.zvonimirplivelic.parkingzg.db.model.Ticket
+import com.zvonimirplivelic.parkingzg.db.model.Vehicle
 
-@Database(entities = [Vehicle::class], version = 1, exportSchema = false)
+@Database(entities = [Vehicle::class, Ticket::class], version = 3, exportSchema = false)
 public abstract class ParkingZgDatabase : RoomDatabase() {
 
     abstract fun parkingZgDao(): ParkingZgDao
@@ -20,7 +23,9 @@ public abstract class ParkingZgDatabase : RoomDatabase() {
                     context.applicationContext,
                     ParkingZgDatabase::class.java,
                     "parkingzg_database"
-                ).build()
+                )
+                    .fallbackToDestructiveMigration()
+                    .build()
                 INSTANCE = instance
                 instance
             }

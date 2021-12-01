@@ -1,4 +1,4 @@
-package com.zvonimirplivelic.parkingzg.db
+package com.zvonimirplivelic.parkingzg.db.model
 
 import android.os.Parcelable
 import androidx.room.Embedded
