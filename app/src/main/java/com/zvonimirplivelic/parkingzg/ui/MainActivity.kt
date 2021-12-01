@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
                 ) {
                     Toast.makeText(
                         this,
-                        "Please enable SMS permissions to use app",
+                        "Please enable SMS permissions to use the app",
                         Toast.LENGTH_LONG
                     ).show()
                     checkForSmsPermission()
