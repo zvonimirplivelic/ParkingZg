@@ -128,5 +128,4 @@ class VehicleListFragment : Fragment(), ZonePaidClickedListener {
             null
         )
     }
-
 }
