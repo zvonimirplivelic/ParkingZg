@@ -10,7 +10,7 @@ data class VehicleWithTickets(
     @Embedded val vehicle: Vehicle,
     @Relation(
         parentColumn = "vehicleId",
-        entityColumn = "ticketId"
+        entityColumn = "ticketVehicleId"
     )
-    val tickets: List<Ticket>
+    val tickets: List<Ticket> = emptyList()
 )

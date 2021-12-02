@@ -3,6 +3,7 @@ package com.zvonimirplivelic.parkingzg.ui.fragment
 import android.app.AlertDialog
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Button
@@ -11,15 +12,23 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.zvonimirplivelic.parkingzg.R
 import com.zvonimirplivelic.parkingzg.db.model.Vehicle
+import com.zvonimirplivelic.parkingzg.ui.adapter.PaidTicketListAdapter
 import com.zvonimirplivelic.parkingzg.viewmodel.ParkingZgViewModel
+
+const val TAG = "VehInfoFrag"
 
 class VehicleInfoFragment : Fragment() {
 
     private val args by navArgs<VehicleInfoFragmentArgs>()
 
     private lateinit var viewModel: ParkingZgViewModel
+
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var ticketListAdapter: PaidTicketListAdapter
 
     private lateinit var etUpdateVehicleModel: EditText
     private lateinit var etUpdateVehicleManufacturer: EditText
@@ -34,6 +43,15 @@ class VehicleInfoFragment : Fragment() {
         setHasOptionsMenu(true)
 
         viewModel = ViewModelProvider(this)[ParkingZgViewModel::class.java]
+        viewModel.getVehicleWithTickets(args.currentVehicle.vehicleId)
+
+        ticketListAdapter = PaidTicketListAdapter()
+        recyclerView = view.findViewById(R.id.rv_paid_tickets_list)
+        recyclerView.apply {
+            adapter = ticketListAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+        }
+
 
         etUpdateVehicleModel = view.findViewById(R.id.et_vehicle_info_model)
         etUpdateVehicleManufacturer = view.findViewById(R.id.et_vehicle_info_manufacturer)
@@ -46,11 +64,23 @@ class VehicleInfoFragment : Fragment() {
         etUpdateVehicleManufacturer.setText(args.currentVehicle.vehicleManufacturer)
         etUpdateVehicleRegistrationNumber.setText(args.currentVehicle.vehicleRegistrationNumber)
 
+
+        return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewModel.getTicketList.observe(viewLifecycleOwner, { ticketList ->
+            Log.d(TAG, "onViewCreated: $ticketList")
+            ticketListAdapter.setData(
+                ticketList[0].tickets
+            )
+        })
+
         btnUpdateVehicle.setOnClickListener {
             updateVehicle()
         }
-
-        return view
     }
 
 
@@ -64,7 +94,6 @@ class VehicleInfoFragment : Fragment() {
         }
         return super.onOptionsItemSelected(item)
     }
-
 
     private fun deleteVehicle() {
         val builder = AlertDialog.Builder(requireContext())
@@ -89,7 +118,6 @@ class VehicleInfoFragment : Fragment() {
             create().show()
         }
     }
-
 
     private fun updateVehicle() {
         val vehicleModel = etUpdateVehicleModel.text.toString()

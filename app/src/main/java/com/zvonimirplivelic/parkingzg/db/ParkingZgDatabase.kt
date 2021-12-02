@@ -8,7 +8,7 @@ import com.zvonimirplivelic.parkingzg.db.dao.ParkingZgDao
 import com.zvonimirplivelic.parkingzg.db.model.Ticket
 import com.zvonimirplivelic.parkingzg.db.model.Vehicle
 
-@Database(entities = [Vehicle::class, Ticket::class], version = 3, exportSchema = false)
+@Database(entities = [Vehicle::class, Ticket::class], version = 5, exportSchema = false)
 public abstract class ParkingZgDatabase : RoomDatabase() {
 
     abstract fun parkingZgDao(): ParkingZgDao

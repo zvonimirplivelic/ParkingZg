@@ -16,19 +16,26 @@ import androidx.recyclerview.widget.RecyclerView
 import com.zvonimirplivelic.parkingzg.R
 import com.zvonimirplivelic.parkingzg.db.model.Vehicle
 import com.zvonimirplivelic.parkingzg.ui.fragment.VehicleListFragmentDirections
+import com.zvonimirplivelic.parkingzg.ui.listener.ZonePaidClickedListener
 import com.zvonimirplivelic.parkingzg.util.Constants
 import timber.log.Timber
 import java.util.*
+
 const val TAG = "adapter"
-class VehicleListAdapter : RecyclerView.Adapter<VehicleListAdapter.VehicleViewHolder>() {
+
+class VehicleListAdapter(
+    private val listener: ZonePaidClickedListener
+) : RecyclerView.Adapter<VehicleListAdapter.VehicleViewHolder>() {
 
     private var vehicleList = emptyList<Vehicle>()
 
-    class VehicleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    class VehicleViewHolder(itemView: View, private val listener: ZonePaidClickedListener) :
+        RecyclerView.ViewHolder(itemView)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VehicleViewHolder {
         return VehicleViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.vehicle_list_item, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.vehicle_list_item, parent, false),
+            listener
         )
     }
 
@@ -66,32 +73,13 @@ class VehicleListAdapter : RecyclerView.Adapter<VehicleListAdapter.VehicleViewHo
         }
 
         btnZoneOne.setOnClickListener {
-            val currentTime: Long = Calendar.getInstance().timeInMillis
-
-            Log.d(TAG, "onBindViewHolder: $currentTime")
-            Timber.d("Time:$currentTime")
-            //            payTicket(holder.itemView.context, Constants.ZONE_ONE, currentVehicle)
-//            payTicketDialog(
-//                holder.itemView.context,
-//                Constants.ZONE_TEST,
-//                currentVehicle
-//            )
+            listener.onZonePaidClicked(currentVehicle, btnZoneOne.text.toString(), Constants.ZONE_TEST)
         }
         btnZoneTwo.setOnClickListener {
-//            payTicket(holder.itemView.context, Constants.ZONE_TWO, currentVehicle)
-//            payTicketDialog(
-//                holder.itemView.context,
-//                Constants.ZONE_TEST,
-//                currentVehicle
-//            )
+            listener.onZonePaidClicked(currentVehicle, btnZoneTwo.text.toString(), Constants.ZONE_TEST)
         }
         btnZoneThree.setOnClickListener {
-//            payTicket(holder.itemView.context, Constants.ZONE_THREE, currentVehicle)
-//            payTicketDialog(
-//                holder.itemView.context,
-//                Constants.ZONE_TEST,
-//                currentVehicle
-//            )
+            listener.onZonePaidClicked(currentVehicle, btnZoneThree.text.toString(), Constants.ZONE_TEST)
         }
     }
 
@@ -113,40 +101,5 @@ class VehicleListAdapter : RecyclerView.Adapter<VehicleListAdapter.VehicleViewHo
             TransitionManager.beginDelayedTransition(expandableClickable, AutoTransition())
             expandableLayout.visibility = View.GONE
         }
-    }
-
-    private fun payTicketDialog(context: Context, phoneNumber: String, currentVehicle: Vehicle) {
-        val builder = AlertDialog.Builder(context)
-        builder.apply {
-            setTitle("Pay ticket for registration plate: ${currentVehicle.vehicleRegistrationNumber}?")
-            setMessage("Do you want to pay ticket for ${currentVehicle.vehicleManufacturer} ${currentVehicle.vehicleModel} with registration plate ${currentVehicle.vehicleRegistrationNumber}?")
-            setPositiveButton("Pay ticket") { _, _ ->
-
-                sendSMS(phoneNumber, currentVehicle)
-                Toast.makeText(
-                    context,
-                    "Message sent",
-                    Toast.LENGTH_LONG
-                ).show()
-            }
-            setNegativeButton("Cancel") { _, _ ->
-
-            }
-            create().show()
-        }
-    }
-
-    private fun sendSMS(
-        phoneNumber: String,
-        currentVehicle: Vehicle
-    ) {
-        val smsManager: SmsManager = SmsManager.getDefault()
-        smsManager.sendTextMessage(
-            phoneNumber,
-            null,
-            currentVehicle.vehicleRegistrationNumber,
-            null,
-            null
-        )
     }
 }

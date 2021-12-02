@@ -1,6 +1,8 @@
 package com.zvonimirplivelic.parkingzg.ui.listener
 
-interface ZonePaidClicked {
-    fun <T>onZonePaidClicked(item: T, phoneNumber: String, plateNumber: String)
+import com.zvonimirplivelic.parkingzg.db.model.Vehicle
+
+interface ZonePaidClickedListener {
+    fun onZonePaidClicked(currentVehicle: Vehicle, zonePaid: String, phoneNumber: String)
 
 }
