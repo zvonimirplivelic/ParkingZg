@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/vehicleListFragment"
         android:name="com.zvonimirplivelic.parkingzg.ui.fragment.VehicleListFragment"
-        android:label="Vehicle List" >
+        android:label="Your vehicles" >
         <action
             android:id="@+id/action_vehicleListFragment_to_addVehicleFragment"
             app:destination="@id/addVehicleFragment" />
@@ -19,7 +19,7 @@
     <fragment
         android:id="@+id/addVehicleFragment"
         android:name="com.zvonimirplivelic.parkingzg.ui.fragment.AddVehicleFragment"
-        android:label="Add your vehicle"
+        android:label="Add new vehicle"
         tools:layout="@layout/fragment_add_vehicle" >
         <action
             android:id="@+id/action_addVehicleFragment_to_vehicleListFragment"

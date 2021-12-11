@@ -46,6 +46,7 @@ class VehicleListAdapter(
         var vehicleInfoCardExpandable =
             holder.itemView.findViewById<LinearLayout>(R.id.expandable_buttons_layout)
 
+        var ivVehiclePhoto = holder.itemView.findViewById<ImageView>(R.id.iv_vehicle_image)
         var tvVehicleModel = holder.itemView.findViewById<TextView>(R.id.tv_vehicle_model)
         var tvVehicleManufacturer =
             holder.itemView.findViewById<TextView>(R.id.tv_vehicle_manufacturer)
@@ -57,6 +58,7 @@ class VehicleListAdapter(
         var btnZoneTwo = holder.itemView.findViewById<Button>(R.id.btn_zone_2)
         var btnZoneThree = holder.itemView.findViewById<Button>(R.id.btn_zone_3)
 
+        ivVehiclePhoto.setImageBitmap(currentVehicle.vehiclePhoto)
         tvVehicleModel.text = currentVehicle.vehicleModel
         tvVehicleManufacturer.text = currentVehicle.vehicleManufacturer
         tvVehicleRegistrationNumber.text = currentVehicle.vehicleRegistrationNumber
@@ -73,13 +75,25 @@ class VehicleListAdapter(
         }
 
         btnZoneOne.setOnClickListener {
-            listener.onZonePaidClicked(currentVehicle, btnZoneOne.text.toString(), Constants.ZONE_TEST)
+            listener.onZonePaidClicked(
+                currentVehicle,
+                btnZoneOne.text.toString(),
+                Constants.ZONE_TEST
+            )
         }
         btnZoneTwo.setOnClickListener {
-            listener.onZonePaidClicked(currentVehicle, btnZoneTwo.text.toString(), Constants.ZONE_TEST)
+            listener.onZonePaidClicked(
+                currentVehicle,
+                btnZoneTwo.text.toString(),
+                Constants.ZONE_TEST
+            )
         }
         btnZoneThree.setOnClickListener {
-            listener.onZonePaidClicked(currentVehicle, btnZoneThree.text.toString(), Constants.ZONE_TEST)
+            listener.onZonePaidClicked(
+                currentVehicle,
+                btnZoneThree.text.toString(),
+                Constants.ZONE_TEST
+            )
         }
     }
 
