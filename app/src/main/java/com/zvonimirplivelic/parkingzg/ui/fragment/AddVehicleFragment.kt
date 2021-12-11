@@ -6,10 +6,8 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
 import android.text.TextUtils
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.*
 import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.ViewModelProvider
@@ -28,13 +26,13 @@ class AddVehicleFragment : Fragment() {
     private lateinit var etVehicleModel: EditText
     private lateinit var etVehicleManufacturer: EditText
     private lateinit var etVehicleRegistrationNumber: EditText
-    private lateinit var btnAddVehicle: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_add_vehicle, container, false)
+        setHasOptionsMenu(true)
 
         viewModel = ViewModelProvider(this)[ParkingZgViewModel::class.java]
 
@@ -43,7 +41,6 @@ class AddVehicleFragment : Fragment() {
         etVehicleModel = view.findViewById(R.id.et_vehicle_model)
         etVehicleManufacturer = view.findViewById(R.id.et_vehicle_manufacturer)
         etVehicleRegistrationNumber = view.findViewById(R.id.et_vehicle_registration_number)
-        btnAddVehicle = view.findViewById(R.id.btn_add_vehicle)
 
         ibCamera.setOnClickListener {
             val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
@@ -56,10 +53,18 @@ class AddVehicleFragment : Fragment() {
             }
         }
 
-        btnAddVehicle.setOnClickListener {
-            addVehicleToDatabase()
-        }
         return view
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.vehicle_add_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_save -> addVehicleToDatabase()
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -78,7 +83,13 @@ class AddVehicleFragment : Fragment() {
         val vehicleImage: Bitmap = ivVehicleImage.drawable.toBitmap()
 
         if (validateUserInput(vehicleModel, vehicleManufacturer, vehicleRegistrationNumber)) {
-            val vehicle = Vehicle(0, vehicleModel, vehicleManufacturer, vehicleRegistrationNumber, vehicleImage)
+            val vehicle = Vehicle(
+                0,
+                vehicleModel,
+                vehicleManufacturer,
+                vehicleRegistrationNumber,
+                vehicleImage
+            )
             viewModel.addVehicle(vehicle)
             Toast.makeText(requireContext(), "Vehicle successfully added!", Toast.LENGTH_LONG)
                 .show()

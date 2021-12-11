@@ -40,7 +40,6 @@ class VehicleInfoFragment : Fragment() {
     private lateinit var etUpdateVehicleModel: EditText
     private lateinit var etUpdateVehicleManufacturer: EditText
     private lateinit var etUpdateVehicleRegistrationNumber: EditText
-    private lateinit var btnUpdateVehicle: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -66,7 +65,6 @@ class VehicleInfoFragment : Fragment() {
         etUpdateVehicleManufacturer = view.findViewById(R.id.et_vehicle_info_manufacturer)
         etUpdateVehicleRegistrationNumber =
             view.findViewById(R.id.et_vehicle_info_registration_number)
-        btnUpdateVehicle = view.findViewById(R.id.btn_update_info)
 
         ivUpdateVehiclePhoto.setImageBitmap(args.currentVehicle.vehiclePhoto)
         etUpdateVehicleModel.setText(args.currentVehicle.vehicleModel)
@@ -104,12 +102,7 @@ class VehicleInfoFragment : Fragment() {
                 ticketList[0].tickets
             )
         })
-
-        btnUpdateVehicle.setOnClickListener {
-            updateVehicle()
-        }
     }
-
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.vehicle_info_menu, menu)
@@ -118,6 +111,7 @@ class VehicleInfoFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_delete -> deleteVehicle()
+            R.id.action_save -> updateVehicle()
         }
         return super.onOptionsItemSelected(item)
     }
