@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.zvonimirplivelic.parkingzg.R
 import com.zvonimirplivelic.parkingzg.db.model.Ticket
+import com.zvonimirplivelic.parkingzg.db.relations.VehicleWithTickets
 import java.text.SimpleDateFormat
 
 class PaidTicketListAdapter: RecyclerView.Adapter<PaidTicketListAdapter.PaidTicketViewHolder>() {
@@ -28,6 +29,7 @@ class PaidTicketListAdapter: RecyclerView.Adapter<PaidTicketListAdapter.PaidTick
         position: Int
     ) {
         val ticket = ticketList[position]
+
         val sdf = SimpleDateFormat("dd.MM.yyyy. HH:mm:ss ")
         val ticketTimeFormatted = sdf.format(ticket.ticketPaidTime)
 

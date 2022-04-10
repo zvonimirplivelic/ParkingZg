@@ -3,7 +3,6 @@ package com.zvonimirplivelic.parkingzg.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.zvonimirplivelic.parkingzg.db.ParkingZgDatabase
 import com.zvonimirplivelic.parkingzg.db.model.Ticket
@@ -16,7 +15,6 @@ import kotlinx.coroutines.launch
 class ParkingZgViewModel(application: Application) : AndroidViewModel(application) {
 
     val getAllVehicles: LiveData<List<Vehicle>>
-    val getTicketList = MutableLiveData<List<VehicleWithTickets>>()
     private val repository: ParkingZgRepository
 
     init {
@@ -25,12 +23,9 @@ class ParkingZgViewModel(application: Application) : AndroidViewModel(applicatio
         getAllVehicles = repository.getAllVehicles
     }
 
-    fun getVehicleWithTickets(vehicleId: Int) = viewModelScope.launch(Dispatchers.Main) {
-        getTicketList.postValue(
-            repository.getVehicleWithTickets(vehicleId)
-        )
+    fun getVehicleWithTickets(vehicleId: Int): LiveData<List<Ticket>> {
+        return repository.getVehicleWithTickets(vehicleId)
     }
-
 
     fun addVehicle(vehicle: Vehicle) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -59,6 +54,12 @@ class ParkingZgViewModel(application: Application) : AndroidViewModel(applicatio
     fun deleteAllVehicles() {
         viewModelScope.launch(Dispatchers.IO) {
             repository.deleteAllVehicles()
+        }
+    }
+
+    fun deleteTicketsForCurrentVehicle(vehicleId: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteTicketsForCurrentVehicle(vehicleId)
         }
     }
 }

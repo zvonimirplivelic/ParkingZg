@@ -1,5 +1,6 @@
 package com.zvonimirplivelic.parkingzg.db.model
 
+import android.graphics.Bitmap
 import android.os.Parcelable
 import androidx.room.Embedded
 import androidx.room.Entity
@@ -13,5 +14,6 @@ data class Vehicle(
     val vehicleId: Int,
     val vehicleModel: String,
     val vehicleManufacturer: String,
-    val vehicleRegistrationNumber: String
+    val vehicleRegistrationNumber: String,
+    val vehiclePhoto: Bitmap
 ): Parcelable

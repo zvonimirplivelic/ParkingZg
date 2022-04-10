@@ -6,13 +6,35 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.AddVehicleFragment">
 
+    <ImageView
+        android:id="@+id/iv_update_vehicle_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="8dp"
+        android:contentDescription="Vehicle image"
+        android:maxHeight="256dp"
+        android:padding="16dp"
+        android:src="@drawable/ic_vehicle_placeholder"
+        app:layout_constraintBottom_toTopOf="@id/et_vehicle_info_manufacturer"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/ib_update_camera_intent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_camera"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/et_vehicle_info_manufacturer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginVertical="8dp"
         android:hint="Vehicle manufacturer:"
         android:outlineAmbientShadowColor="@color/blue_700"
         android:outlineSpotShadowColor="@color/blue_200"
@@ -46,7 +68,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginVertical="8dp"
         android:hint="Vehicle registration number(ZG0123AA)"
         android:outlineAmbientShadowColor="@color/blue_700"
         android:outlineSpotShadowColor="@color/blue_200"
@@ -57,38 +79,18 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/et_vehicle_info_model" />
 
-    <TextView
-        android:id="@+id/tv_paid_tickets_list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Paid tickets"
-        android:textSize="16dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_vehicle_info_registration_number" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_paid_tickets_list"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="16dp"
-        app:layout_constraintBottom_toTopOf="@id/btn_update_info"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_paid_tickets_list" />
-
     <Button
-        android:id="@+id/btn_update_info"
+        android:id="@+id/btn_paid_ticket_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:padding="8dp"
-        android:text="Update information"
-        android:textSize="20sp"
+        android:textSize="16sp"
+        android:text="Show paid tickets"
+        android:textColor="@color/black"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

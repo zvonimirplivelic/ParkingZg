@@ -4,11 +4,14 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.zvonimirplivelic.parkingzg.db.converters.Converters
 import com.zvonimirplivelic.parkingzg.db.dao.ParkingZgDao
 import com.zvonimirplivelic.parkingzg.db.model.Ticket
 import com.zvonimirplivelic.parkingzg.db.model.Vehicle
 
-@Database(entities = [Vehicle::class, Ticket::class], version = 5, exportSchema = false)
+@Database(entities = [Vehicle::class, Ticket::class], version = 6, exportSchema = false)
+@TypeConverters(Converters::class)
 public abstract class ParkingZgDatabase : RoomDatabase() {
 
     abstract fun parkingZgDao(): ParkingZgDao

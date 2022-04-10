@@ -6,32 +6,54 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.AddVehicleFragment">
 
+    <ImageView
+        android:id="@+id/iv_add_vehicle_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="256dp"
+        android:layout_margin="16dp"
+        android:contentDescription="Vehicle image"
+        android:padding="16dp"
+        android:src="@drawable/ic_vehicle_placeholder"
+        app:layout_constraintBottom_toTopOf="@id/et_vehicle_manufacturer"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/ib_update_camera_intent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_camera"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/et_vehicle_manufacturer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:hint="Vehicle manufacturer:"
-        android:textColor="@color/black"
-        android:textColorHighlight="@color/blue_200"
         android:outlineAmbientShadowColor="@color/blue_700"
         android:outlineSpotShadowColor="@color/blue_200"
+        android:textColor="@color/black"
+        android:textColorHighlight="@color/blue_200"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@id/et_vehicle_model"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/iv_add_vehicle_image" />
 
     <EditText
         android:id="@+id/et_vehicle_model"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:textColor="@color/black"
-        android:textColorHighlight="@color/blue_200"
+        android:hint="Vehicle model:"
         android:outlineAmbientShadowColor="@color/blue_700"
         android:outlineSpotShadowColor="@color/blue_200"
-        android:hint="Vehicle model:"
+        android:textColor="@color/black"
+        android:textColorHighlight="@color/blue_200"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@id/et_vehicle_registration_number"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -43,27 +65,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:textColor="@color/black"
-        android:textColorHighlight="@color/blue_200"
+        android:hint="Vehicle registration number(ZG0123AA)"
         android:outlineAmbientShadowColor="@color/blue_700"
         android:outlineSpotShadowColor="@color/blue_200"
-        android:hint="Vehicle registration number(ZG0123AA)"
+        android:textColor="@color/black"
+        android:textColorHighlight="@color/blue_200"
         android:textSize="16sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/et_vehicle_model" />
-
-    <Button
-        android:id="@+id/btn_add_vehicle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:padding="8dp"
-        android:text="Add vehicle"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

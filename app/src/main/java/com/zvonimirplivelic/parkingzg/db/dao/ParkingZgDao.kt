@@ -23,8 +23,12 @@ interface ParkingZgDao {
     @Query("DELETE FROM vehicle_table")
     fun deleteAllVehicles()
 
-    @Query("SELECT * FROM vehicle_table WHERE vehicleId =:vehicleId")
-    suspend fun getVehicleWithTickets(vehicleId: Int): List<VehicleWithTickets>
+    @Query("DELETE FROM ticket_table WHERE ticketVehicleId = :vehicleId")
+    fun deleteTicketsForCurrentVehicle(vehicleId: Int)
+
+    @Transaction
+    @Query("SELECT * FROM ticket_table WHERE ticketVehicleId = :vehicleId")
+    fun getVehicleWithTickets(vehicleId: Int): LiveData<List<Ticket>>
 
     @Query("SELECT * FROM vehicle_table ORDER BY vehicleId ASC")
     fun getAllVehicles(): LiveData<List<Vehicle>>
