@@ -13,6 +13,7 @@ import android.widget.*
 import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -32,14 +33,12 @@ class VehicleInfoFragment : Fragment() {
 
     private lateinit var viewModel: ParkingZgViewModel
 
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var ticketListAdapter: PaidTicketListAdapter
-
     private lateinit var ivUpdateVehiclePhoto: ImageView
     private lateinit var ibUpdateCamera: ImageButton
     private lateinit var etUpdateVehicleModel: EditText
     private lateinit var etUpdateVehicleManufacturer: EditText
     private lateinit var etUpdateVehicleRegistrationNumber: EditText
+    private lateinit var btnShowPaidTickets : Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,15 +48,6 @@ class VehicleInfoFragment : Fragment() {
         setHasOptionsMenu(true)
 
         viewModel = ViewModelProvider(this)[ParkingZgViewModel::class.java]
-        viewModel.getVehicleWithTickets(args.currentVehicle.vehicleId)
-
-        ticketListAdapter = PaidTicketListAdapter()
-        recyclerView = view.findViewById(R.id.rv_paid_tickets_list)
-        recyclerView.apply {
-            adapter = ticketListAdapter
-            layoutManager = LinearLayoutManager(requireContext())
-        }
-
 
         ivUpdateVehiclePhoto = view.findViewById(R.id.iv_update_vehicle_image)
         ibUpdateCamera = view.findViewById(R.id.ib_update_camera_intent)
@@ -65,6 +55,7 @@ class VehicleInfoFragment : Fragment() {
         etUpdateVehicleManufacturer = view.findViewById(R.id.et_vehicle_info_manufacturer)
         etUpdateVehicleRegistrationNumber =
             view.findViewById(R.id.et_vehicle_info_registration_number)
+        btnShowPaidTickets = view.findViewById(R.id.btn_paid_ticket_list)
 
         ivUpdateVehiclePhoto.setImageBitmap(args.currentVehicle.vehiclePhoto)
         etUpdateVehicleModel.setText(args.currentVehicle.vehicleModel)
@@ -72,15 +63,16 @@ class VehicleInfoFragment : Fragment() {
         etUpdateVehicleRegistrationNumber.setText(args.currentVehicle.vehicleRegistrationNumber)
 
         ibUpdateCamera.setOnClickListener {
-            val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-
-            if (cameraIntent.resolveActivity(requireActivity().packageManager) != null) {
-                startActivityForResult(cameraIntent, CAMERA_UPDATE_INTENT_REQUEST_CODE)
-            } else {
-                Toast.makeText(requireContext(), "Unable to launch camera", Toast.LENGTH_SHORT)
-                    .show()
-            }
+            launchCamera()
         }
+
+        btnShowPaidTickets.setOnClickListener {
+            val action =
+                VehicleInfoFragmentDirections
+                    .actionVehicleInfoFragmentToPaidTicketListFragment(args.currentVehicle)
+            it.findNavController().navigate(action)
+        }
+
         return view
     }
 
@@ -91,17 +83,6 @@ class VehicleInfoFragment : Fragment() {
         } else {
             super.onActivityResult(requestCode, resultCode, data)
         }
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        viewModel.getTicketList.observe(viewLifecycleOwner, { ticketList ->
-            Log.d(TAG, "onViewCreated: $ticketList")
-            ticketListAdapter.setData(
-                ticketList[0].tickets
-            )
-        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -155,7 +136,7 @@ class VehicleInfoFragment : Fragment() {
                 vehiclePhoto
             )
             viewModel.updateVehicle(updatedVehicle)
-            Toast.makeText(requireContext(), "Successfully updated task", Toast.LENGTH_LONG).show()
+            Toast.makeText(requireContext(), "Successfully updated vehicle details", Toast.LENGTH_LONG).show()
             findNavController().navigate(R.id.action_vehicleInfoFragment_to_vehicleListFragment)
         } else {
             Toast.makeText(requireContext(), "Please fill out the fields!", Toast.LENGTH_LONG)
@@ -171,5 +152,16 @@ class VehicleInfoFragment : Fragment() {
         return !(TextUtils.isEmpty(vehicleModel) ||
                 TextUtils.isEmpty(vehicleManufacturer) ||
                 TextUtils.isEmpty(vehicleRegistrationNumber))
+    }
+
+    private fun launchCamera() {
+        val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+
+        if (cameraIntent.resolveActivity(requireActivity().packageManager) != null) {
+            startActivityForResult(cameraIntent, CAMERA_UPDATE_INTENT_REQUEST_CODE)
+        } else {
+            Toast.makeText(requireContext(), "Unable to launch camera", Toast.LENGTH_SHORT)
+                .show()
+        }
     }
 }

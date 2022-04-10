@@ -35,5 +35,18 @@
         <argument
             android:name="currentVehicle"
             app:argType="com.zvonimirplivelic.parkingzg.db.model.Vehicle" />
+        <action
+            android:id="@+id/action_vehicleInfoFragment_to_paidTicketListFragment"
+            app:destination="@id/paidTicketListFragment" />
     </fragment>
-   </navigation>
+
+    <fragment
+        android:id="@+id/paidTicketListFragment"
+        android:name="com.zvonimirplivelic.parkingzg.ui.fragment.PaidTicketListFragment"
+        android:label="Paid Tickets"
+        tools:layout="@layout/fragment_paid_ticket_list" >
+        <argument
+            android:name="currentVehicle"
+            app:argType="com.zvonimirplivelic.parkingzg.db.model.Vehicle" />
+    </fragment>
+</navigation>

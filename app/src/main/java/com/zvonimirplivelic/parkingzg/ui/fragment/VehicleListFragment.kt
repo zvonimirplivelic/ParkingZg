@@ -11,7 +11,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.zvonimirplivelic.parkingzg.R
 import com.zvonimirplivelic.parkingzg.db.model.Ticket
 import com.zvonimirplivelic.parkingzg.db.model.Vehicle
@@ -42,9 +41,9 @@ class VehicleListFragment : Fragment(), ZonePaidClickedListener {
         }
 
         viewModel = ViewModelProvider(this)[ParkingZgViewModel::class.java]
-        viewModel.getAllVehicles.observe(viewLifecycleOwner, { vehicleList ->
+        viewModel.getAllVehicles.observe(viewLifecycleOwner) { vehicleList ->
             vehicleListAdapter.setData(vehicleList)
-        })
+        }
 
         return view
     }

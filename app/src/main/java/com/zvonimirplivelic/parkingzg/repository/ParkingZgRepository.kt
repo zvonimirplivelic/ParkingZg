@@ -4,12 +4,11 @@ import androidx.lifecycle.LiveData
 import com.zvonimirplivelic.parkingzg.db.dao.ParkingZgDao
 import com.zvonimirplivelic.parkingzg.db.model.Ticket
 import com.zvonimirplivelic.parkingzg.db.model.Vehicle
-import com.zvonimirplivelic.parkingzg.db.relations.VehicleWithTickets
 
 class ParkingZgRepository(private val parkingZgDao: ParkingZgDao) {
     val getAllVehicles: LiveData<List<Vehicle>> = parkingZgDao.getAllVehicles()
 
-    suspend fun getVehicleWithTickets(vehicleId: Int): List<VehicleWithTickets> {
+    fun getVehicleWithTickets(vehicleId: Int): LiveData<List<Ticket>> {
         return parkingZgDao.getVehicleWithTickets(vehicleId)
     }
 
@@ -29,8 +28,11 @@ class ParkingZgRepository(private val parkingZgDao: ParkingZgDao) {
         parkingZgDao.deleteVehicle(vehicle)
     }
 
-
     fun deleteAllVehicles() {
         parkingZgDao.deleteAllVehicles()
+    }
+
+    fun deleteTicketsForCurrentVehicle(vehicleId: Int) {
+        parkingZgDao.deleteTicketsForCurrentVehicle(vehicleId)
     }
 }

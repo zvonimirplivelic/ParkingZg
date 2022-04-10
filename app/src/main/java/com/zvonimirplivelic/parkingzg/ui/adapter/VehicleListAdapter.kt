@@ -32,7 +32,7 @@ class VehicleListAdapter(
     class VehicleViewHolder(itemView: View, private val listener: ZonePaidClickedListener) :
         RecyclerView.ViewHolder(itemView)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VehicleViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VehicleListAdapter.VehicleViewHolder {
         return VehicleViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.vehicle_list_item, parent, false),
             listener

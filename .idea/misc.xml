@@ -20,6 +20,7 @@
         <entry key="app/src/main/res/layout/horizontal_line.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/layout/ticket_list_item.xml" value="0.1" />
         <entry key="app/src/main/res/layout/vehicle_list_item.xml" value="0.15942028985507245" />
+        <entry key="app/src/main/res/menu/ticket_list_menu.xml" value="0.19375" />
         <entry key="app/src/main/res/menu/vehicle_add_menu.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/menu/vehicle_info_menu.xml" value="0.1" />
         <entry key="app/src/main/res/menu/vehicle_list_menu.xml" value="0.19322916666666667" />
