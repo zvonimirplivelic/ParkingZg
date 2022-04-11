@@ -77,11 +77,11 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <include
-            layout="@layout/horizontal_line"
+        <com.google.android.material.divider.MaterialDivider
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="8dp" />
+            app:dividerInsetEnd="16dp"
+            app:dividerInsetStart="16dp" />
 
         <LinearLayout
             android:id="@+id/expandable_buttons_layout"

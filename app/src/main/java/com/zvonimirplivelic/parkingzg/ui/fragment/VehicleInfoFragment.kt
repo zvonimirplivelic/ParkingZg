@@ -18,6 +18,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.textfield.TextInputLayout
 import com.zvonimirplivelic.parkingzg.R
 import com.zvonimirplivelic.parkingzg.db.model.Vehicle
 import com.zvonimirplivelic.parkingzg.ui.adapter.PaidTicketListAdapter
@@ -35,9 +36,9 @@ class VehicleInfoFragment : Fragment() {
 
     private lateinit var ivUpdateVehiclePhoto: ImageView
     private lateinit var ibUpdateCamera: ImageButton
-    private lateinit var etUpdateVehicleModel: EditText
-    private lateinit var etUpdateVehicleManufacturer: EditText
-    private lateinit var etUpdateVehicleRegistrationNumber: EditText
+    private lateinit var etUpdateVehicleModel: TextInputLayout
+    private lateinit var etUpdateVehicleManufacturer: TextInputLayout
+    private lateinit var etUpdateVehicleRegistrationNumber: TextInputLayout
     private lateinit var btnShowPaidTickets : Button
 
     override fun onCreateView(
@@ -58,9 +59,9 @@ class VehicleInfoFragment : Fragment() {
         btnShowPaidTickets = view.findViewById(R.id.btn_paid_ticket_list)
 
         ivUpdateVehiclePhoto.setImageBitmap(args.currentVehicle.vehiclePhoto)
-        etUpdateVehicleModel.setText(args.currentVehicle.vehicleModel)
-        etUpdateVehicleManufacturer.setText(args.currentVehicle.vehicleManufacturer)
-        etUpdateVehicleRegistrationNumber.setText(args.currentVehicle.vehicleRegistrationNumber)
+        etUpdateVehicleModel.editText?.setText(args.currentVehicle.vehicleModel)
+        etUpdateVehicleManufacturer.editText?.setText(args.currentVehicle.vehicleManufacturer)
+        etUpdateVehicleRegistrationNumber.editText?.setText(args.currentVehicle.vehicleRegistrationNumber)
 
         ibUpdateCamera.setOnClickListener {
             launchCamera()
@@ -122,9 +123,9 @@ class VehicleInfoFragment : Fragment() {
     }
 
     private fun updateVehicle() {
-        val vehicleModel = etUpdateVehicleModel.text.toString()
-        val vehicleManufacturer = etUpdateVehicleManufacturer.text.toString()
-        val vehicleRegistrationNumber = etUpdateVehicleRegistrationNumber.text.toString()
+        val vehicleModel = etUpdateVehicleModel.editText.toString()
+        val vehicleManufacturer = etUpdateVehicleManufacturer.editText.toString()
+        val vehicleRegistrationNumber = etUpdateVehicleRegistrationNumber.editText.toString()
         val vehiclePhoto = ivUpdateVehiclePhoto.drawable.toBitmap()
 
         if (validateUserInput(vehicleModel, vehicleManufacturer, vehicleRegistrationNumber)) {
