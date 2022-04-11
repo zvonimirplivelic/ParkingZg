@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.zvonimirplivelic.parkingzg.db.model.Ticket
 import com.zvonimirplivelic.parkingzg.db.model.Vehicle
-import com.zvonimirplivelic.parkingzg.db.relations.VehicleWithTickets
 
 @Dao
 interface ParkingZgDao {

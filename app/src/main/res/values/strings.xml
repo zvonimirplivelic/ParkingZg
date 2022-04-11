@@ -1,19 +1,21 @@
 <resources>
     <string name="app_name">ParkingZg</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <!-- Preference Titles -->
-    <string name="messages_header">Messages</string>
-    <string name="sync_header">Sync</string>
-
-    <!-- Messages Preferences -->
-    <string name="signature_title">Your signature</string>
-    <string name="reply_title">Default reply action</string>
-
-    <!-- Sync Preferences -->
-    <string name="sync_title">Sync email periodically</string>
-    <string name="attachment_title">Download incoming attachments</string>
-    <string name="attachment_summary_on">Automatically download attachments for incoming emails
-    </string>
-    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="iv_add_vehicle_img_desc">Vehicle image</string>
+    <string name="ib_add_image_img_desc">Take picture of your vehicle</string>
+    <string name="et_vehicle_manufacturer_hint">Vehicle manufacturer:</string>
+    <string name="et_vehicle_model_hint">Vehicle model:</string>
+    <string name="et_vehicle_registration_hint">Vehicle registration number(ZG0123AA)</string>
+    <string name="iv_update_vehicle_image_desc">Vehicle image</string>
+    <string name="ib_update_camera_desc">Add vehicle photo</string>
+    <string name="btn_paid_ticket_list_text">Show paid tickets</string>
+    <string name="iv_vehicle_image_description">Vehicle image</string>
+    <string name="vehicle_info_button_desc">Vehicle info button</string>
+    <string name="btn_zone1_text">Zone 1</string>
+    <string name="btn_zone2_text">Zone 2</string>
+    <string name="btn_zone3_text">Zone 3</string>
+    <string name="menu_delete_all_vehicles">Delete all vehicles</string>
+    <string name="menu_save_vehicle">Save</string>
+    <string name="menu_delete_vehicle">Delete current vehicle</string>
+    <string name="menu_add_vehicle">Add vehicle</string>
+    <string name="menu_delete_all_tickets">Delete all tickets</string>
 </resources>

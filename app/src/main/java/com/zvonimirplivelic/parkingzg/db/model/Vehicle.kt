@@ -2,7 +2,6 @@ package com.zvonimirplivelic.parkingzg.db.model
 
 import android.graphics.Bitmap
 import android.os.Parcelable
-import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize

@@ -5,6 +5,6 @@
     <item
         android:id="@+id/action_delete_all"
         android:icon="@drawable/ic_delete"
-        android:title="Delete all vehicles"
+        android:title="@string/menu_delete_all_tickets"
         app:showAsAction="ifRoom" />
 </menu>

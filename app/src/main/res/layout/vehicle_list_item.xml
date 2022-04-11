@@ -27,7 +27,8 @@
                 android:src="@drawable/ic_vehicle_placeholder"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="@string/iv_vehicle_image_description" />
 
             <TextView
                 android:id="@+id/tv_vehicle_manufacturer"
@@ -35,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:textColor="@color/black"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 app:layout_constraintLeft_toRightOf="@+id/iv_vehicle_image"
                 app:layout_constraintRight_toLeftOf="@id/tv_vehicle_model"
                 app:layout_constraintTop_toTopOf="parent"
@@ -47,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:textColor="@color/black"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 app:layout_constraintLeft_toRightOf="@id/tv_vehicle_manufacturer"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Astra" />
@@ -58,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:textColor="@color/black"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/iv_vehicle_image"
@@ -74,7 +75,8 @@
                 android:src="@drawable/ic_info"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="@string/vehicle_info_button_desc" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.divider.MaterialDivider
@@ -101,7 +103,8 @@
                 android:layout_margin="8dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/red"
-                android:text="Zone 1"
+                android:text="@string/btn_zone1_text"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:textColor="@color/black" />
 
             <Button
@@ -110,18 +113,20 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:layout_weight="1"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:backgroundTint="@color/yellow"
-                android:text="Zone 2"
+                android:text="@string/btn_zone2_text"
                 android:textColor="@color/black" />
 
             <Button
                 android:id="@+id/btn_zone_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_margin="8dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/green"
-                android:text="Zone 3"
+                android:text="@string/btn_zone3_text"
                 android:textColor="@color/black" />
         </LinearLayout>
     </LinearLayout>
