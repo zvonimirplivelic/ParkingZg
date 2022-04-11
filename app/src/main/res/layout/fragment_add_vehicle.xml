@@ -10,9 +10,9 @@
         android:id="@+id/iv_add_vehicle_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="256dp"
         android:layout_margin="16dp"
         android:contentDescription="Vehicle image"
+        android:minHeight="256dp"
         android:padding="16dp"
         android:src="@drawable/ic_vehicle_placeholder"
         app:layout_constraintBottom_toTopOf="@id/et_vehicle_manufacturer"
@@ -26,10 +26,12 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_camera"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="Take picture of your vehicle" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/et_vehicle_manufacturer"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -42,10 +44,17 @@
         app:layout_constraintBottom_toTopOf="@id/et_vehicle_model"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_add_vehicle_image" />
+        app:layout_constraintTop_toBottomOf="@id/iv_add_vehicle_image">
 
-    <EditText
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/et_vehicle_model"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -58,10 +67,17 @@
         app:layout_constraintBottom_toTopOf="@id/et_vehicle_registration_number"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_vehicle_manufacturer" />
+        app:layout_constraintTop_toBottomOf="@id/et_vehicle_manufacturer">
 
-    <EditText
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/et_vehicle_registration_number"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -71,8 +87,14 @@
         android:textColor="@color/black"
         android:textColorHighlight="@color/blue_200"
         android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_vehicle_model" />
+        app:layout_constraintTop_toBottomOf="@id/et_vehicle_model">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
