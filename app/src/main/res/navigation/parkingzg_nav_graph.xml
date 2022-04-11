@@ -8,21 +8,18 @@
     <fragment
         android:id="@+id/vehicleListFragment"
         android:name="com.zvonimirplivelic.parkingzg.ui.fragment.VehicleListFragment"
-        android:label="Vehicle List" >
+        android:label="Your vehicles" >
         <action
             android:id="@+id/action_vehicleListFragment_to_addVehicleFragment"
             app:destination="@id/addVehicleFragment" />
         <action
             android:id="@+id/action_vehicleListFragment_to_vehicleInfoFragment"
             app:destination="@id/vehicleInfoFragment" />
-        <action
-            android:id="@+id/action_vehicleListFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/addVehicleFragment"
         android:name="com.zvonimirplivelic.parkingzg.ui.fragment.AddVehicleFragment"
-        android:label="Add your vehicle"
+        android:label="Add new vehicle"
         tools:layout="@layout/fragment_add_vehicle" >
         <action
             android:id="@+id/action_addVehicleFragment_to_vehicleListFragment"
@@ -37,14 +34,19 @@
             app:destination="@id/vehicleListFragment" />
         <argument
             android:name="currentVehicle"
-            app:argType="com.zvonimirplivelic.parkingzg.db.Vehicle" />
-    </fragment>
-    <fragment
-        android:id="@+id/settingsFragment"
-        android:name="com.zvonimirplivelic.parkingzg.SettingsFragment"
-        android:label="SettingsFragment" >
+            app:argType="com.zvonimirplivelic.parkingzg.db.model.Vehicle" />
         <action
-            android:id="@+id/action_settingsFragment_to_vehicleListFragment"
-            app:destination="@id/vehicleListFragment" />
+            android:id="@+id/action_vehicleInfoFragment_to_paidTicketListFragment"
+            app:destination="@id/paidTicketListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/paidTicketListFragment"
+        android:name="com.zvonimirplivelic.parkingzg.ui.fragment.PaidTicketListFragment"
+        android:label="Paid Tickets"
+        tools:layout="@layout/fragment_paid_ticket_list" >
+        <argument
+            android:name="currentVehicle"
+            app:argType="com.zvonimirplivelic.parkingzg.db.model.Vehicle" />
     </fragment>
 </navigation>

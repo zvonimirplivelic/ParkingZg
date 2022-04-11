@@ -2,8 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/action_add_vehicle"
+        android:icon="@drawable/ic_add"
+        android:iconTint="@color/white"
+        android:title="@string/menu_add_vehicle"
+        app:showAsAction="ifRoom" />
+
+    <item
         android:id="@+id/action_delete_all"
         android:icon="@drawable/ic_delete"
-        android:title="Delete all"
+        android:title="@string/menu_delete_all_vehicles"
         app:showAsAction="ifRoom" />
 </menu>
