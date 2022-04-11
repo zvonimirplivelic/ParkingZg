@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import com.zvonimirplivelic.parkingzg.db.ParkingZgDatabase
 import com.zvonimirplivelic.parkingzg.db.model.Ticket
 import com.zvonimirplivelic.parkingzg.db.model.Vehicle
-import com.zvonimirplivelic.parkingzg.db.relations.VehicleWithTickets
 import com.zvonimirplivelic.parkingzg.repository.ParkingZgRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

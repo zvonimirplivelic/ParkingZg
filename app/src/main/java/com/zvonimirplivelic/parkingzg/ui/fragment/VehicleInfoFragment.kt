@@ -7,20 +7,20 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
 import android.text.TextUtils
-import android.util.Log
 import android.view.*
-import android.widget.*
+import android.widget.Button
+import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.Toast
 import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.textfield.TextInputLayout
 import com.zvonimirplivelic.parkingzg.R
 import com.zvonimirplivelic.parkingzg.db.model.Vehicle
-import com.zvonimirplivelic.parkingzg.ui.adapter.PaidTicketListAdapter
 import com.zvonimirplivelic.parkingzg.viewmodel.ParkingZgViewModel
 
 const val TAG = "VehInfoFrag"
@@ -35,9 +35,9 @@ class VehicleInfoFragment : Fragment() {
 
     private lateinit var ivUpdateVehiclePhoto: ImageView
     private lateinit var ibUpdateCamera: ImageButton
-    private lateinit var etUpdateVehicleModel: EditText
-    private lateinit var etUpdateVehicleManufacturer: EditText
-    private lateinit var etUpdateVehicleRegistrationNumber: EditText
+    private lateinit var etUpdateVehicleModel: TextInputLayout
+    private lateinit var etUpdateVehicleManufacturer: TextInputLayout
+    private lateinit var etUpdateVehicleRegistrationNumber: TextInputLayout
     private lateinit var btnShowPaidTickets : Button
 
     override fun onCreateView(
@@ -58,9 +58,9 @@ class VehicleInfoFragment : Fragment() {
         btnShowPaidTickets = view.findViewById(R.id.btn_paid_ticket_list)
 
         ivUpdateVehiclePhoto.setImageBitmap(args.currentVehicle.vehiclePhoto)
-        etUpdateVehicleModel.setText(args.currentVehicle.vehicleModel)
-        etUpdateVehicleManufacturer.setText(args.currentVehicle.vehicleManufacturer)
-        etUpdateVehicleRegistrationNumber.setText(args.currentVehicle.vehicleRegistrationNumber)
+        etUpdateVehicleModel.editText?.setText(args.currentVehicle.vehicleModel)
+        etUpdateVehicleManufacturer.editText?.setText(args.currentVehicle.vehicleManufacturer)
+        etUpdateVehicleRegistrationNumber.editText?.setText(args.currentVehicle.vehicleRegistrationNumber)
 
         ibUpdateCamera.setOnClickListener {
             launchCamera()
@@ -122,9 +122,9 @@ class VehicleInfoFragment : Fragment() {
     }
 
     private fun updateVehicle() {
-        val vehicleModel = etUpdateVehicleModel.text.toString()
-        val vehicleManufacturer = etUpdateVehicleManufacturer.text.toString()
-        val vehicleRegistrationNumber = etUpdateVehicleRegistrationNumber.text.toString()
+        val vehicleModel = etUpdateVehicleModel.editText?.text.toString()
+        val vehicleManufacturer = etUpdateVehicleManufacturer.editText?.text.toString()
+        val vehicleRegistrationNumber = etUpdateVehicleRegistrationNumber.editText?.text.toString()
         val vehiclePhoto = ivUpdateVehiclePhoto.drawable.toBitmap()
 
         if (validateUserInput(vehicleModel, vehicleManufacturer, vehicleRegistrationNumber)) {

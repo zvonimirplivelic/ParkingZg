@@ -10,9 +10,9 @@
         android:id="@+id/iv_add_vehicle_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="256dp"
         android:layout_margin="16dp"
-        android:contentDescription="Vehicle image"
+        android:contentDescription="@string/iv_add_vehicle_img_desc"
+        android:minHeight="256dp"
         android:padding="16dp"
         android:src="@drawable/ic_vehicle_placeholder"
         app:layout_constraintBottom_toTopOf="@id/et_vehicle_manufacturer"
@@ -21,19 +21,21 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/ib_update_camera_intent"
+        android:id="@+id/ib_add_camera_intent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_camera"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/ib_add_image_img_desc" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/et_vehicle_manufacturer"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:hint="Vehicle manufacturer:"
+        android:hint="@string/et_vehicle_manufacturer_hint"
         android:outlineAmbientShadowColor="@color/blue_700"
         android:outlineSpotShadowColor="@color/blue_200"
         android:textColor="@color/black"
@@ -42,14 +44,21 @@
         app:layout_constraintBottom_toTopOf="@id/et_vehicle_model"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_add_vehicle_image" />
+        app:layout_constraintTop_toBottomOf="@id/iv_add_vehicle_image">
 
-    <EditText
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/et_vehicle_model"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:hint="Vehicle model:"
+        android:hint="@string/et_vehicle_model_hint"
         android:outlineAmbientShadowColor="@color/blue_700"
         android:outlineSpotShadowColor="@color/blue_200"
         android:textColor="@color/black"
@@ -58,21 +67,34 @@
         app:layout_constraintBottom_toTopOf="@id/et_vehicle_registration_number"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_vehicle_manufacturer" />
+        app:layout_constraintTop_toBottomOf="@id/et_vehicle_manufacturer">
 
-    <EditText
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/et_vehicle_registration_number"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:hint="Vehicle registration number(ZG0123AA)"
+        android:hint="@string/et_vehicle_registration_hint"
         android:outlineAmbientShadowColor="@color/blue_700"
         android:outlineSpotShadowColor="@color/blue_200"
         android:textColor="@color/black"
         android:textColorHighlight="@color/blue_200"
         android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_vehicle_model" />
+        app:layout_constraintTop_toBottomOf="@id/et_vehicle_model">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,7 +12,7 @@ import com.zvonimirplivelic.parkingzg.db.model.Vehicle
 
 @Database(entities = [Vehicle::class, Ticket::class], version = 6, exportSchema = false)
 @TypeConverters(Converters::class)
-public abstract class ParkingZgDatabase : RoomDatabase() {
+abstract class ParkingZgDatabase : RoomDatabase() {
 
     abstract fun parkingZgDao(): ParkingZgDao
 

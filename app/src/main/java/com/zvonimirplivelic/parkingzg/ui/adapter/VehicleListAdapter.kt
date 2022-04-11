@@ -1,15 +1,14 @@
 package com.zvonimirplivelic.parkingzg.ui.adapter
 
-import android.app.AlertDialog
-import android.content.Context
-import android.telephony.SmsManager
 import android.transition.AutoTransition
 import android.transition.TransitionManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -18,8 +17,8 @@ import com.zvonimirplivelic.parkingzg.db.model.Vehicle
 import com.zvonimirplivelic.parkingzg.ui.fragment.VehicleListFragmentDirections
 import com.zvonimirplivelic.parkingzg.ui.listener.ZonePaidClickedListener
 import com.zvonimirplivelic.parkingzg.util.Constants
-import timber.log.Timber
-import java.util.*
+import com.zvonimirplivelic.parkingzg.util.DiffUtilExtension.autoNotify
+import kotlin.properties.Delegates
 
 const val TAG = "adapter"
 
@@ -27,12 +26,14 @@ class VehicleListAdapter(
     private val listener: ZonePaidClickedListener
 ) : RecyclerView.Adapter<VehicleListAdapter.VehicleViewHolder>() {
 
-    private var vehicleList = emptyList<Vehicle>()
+    private var vehicleList: List<Vehicle> by Delegates.observable(emptyList()) { _, oldList, newList ->
+        autoNotify(oldList, newList) { o, n -> o.vehicleId == n.vehicleId }
+    }
 
     class VehicleViewHolder(itemView: View, private val listener: ZonePaidClickedListener) :
         RecyclerView.ViewHolder(itemView)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VehicleListAdapter.VehicleViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VehicleViewHolder {
         return VehicleViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.vehicle_list_item, parent, false),
             listener
@@ -42,21 +43,21 @@ class VehicleListAdapter(
     override fun onBindViewHolder(holder: VehicleViewHolder, position: Int) {
         val currentVehicle = vehicleList[position]
 
-        var clickableInfoCard = holder.itemView.findViewById<CardView>(R.id.vehicle_list_item)
-        var vehicleInfoCardExpandable =
+        val clickableInfoCard = holder.itemView.findViewById<CardView>(R.id.vehicle_list_item)
+        val vehicleInfoCardExpandable =
             holder.itemView.findViewById<LinearLayout>(R.id.expandable_buttons_layout)
 
-        var ivVehiclePhoto = holder.itemView.findViewById<ImageView>(R.id.iv_vehicle_image)
-        var tvVehicleModel = holder.itemView.findViewById<TextView>(R.id.tv_vehicle_model)
-        var tvVehicleManufacturer =
+        val ivVehiclePhoto = holder.itemView.findViewById<ImageView>(R.id.iv_vehicle_image)
+        val tvVehicleModel = holder.itemView.findViewById<TextView>(R.id.tv_vehicle_model)
+        val tvVehicleManufacturer =
             holder.itemView.findViewById<TextView>(R.id.tv_vehicle_manufacturer)
-        var tvVehicleRegistrationNumber =
+        val tvVehicleRegistrationNumber =
             holder.itemView.findViewById<TextView>(R.id.tv_vehicle_registration_number)
 
-        var ivVehicleInfo = holder.itemView.findViewById<ImageView>(R.id.iv_vehicle_info)
-        var btnZoneOne = holder.itemView.findViewById<Button>(R.id.btn_zone_1)
-        var btnZoneTwo = holder.itemView.findViewById<Button>(R.id.btn_zone_2)
-        var btnZoneThree = holder.itemView.findViewById<Button>(R.id.btn_zone_3)
+        val ivVehicleInfo = holder.itemView.findViewById<ImageView>(R.id.iv_vehicle_info)
+        val btnZoneOne = holder.itemView.findViewById<Button>(R.id.btn_zone_1)
+        val btnZoneTwo = holder.itemView.findViewById<Button>(R.id.btn_zone_2)
+        val btnZoneThree = holder.itemView.findViewById<Button>(R.id.btn_zone_3)
 
         ivVehiclePhoto.setImageBitmap(currentVehicle.vehiclePhoto)
         tvVehicleModel.text = currentVehicle.vehicleModel

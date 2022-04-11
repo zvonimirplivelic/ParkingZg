@@ -7,11 +7,14 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.text.TextUtils
 import android.view.*
-import androidx.fragment.app.Fragment
-import android.widget.*
+import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.Toast
 import androidx.core.graphics.drawable.toBitmap
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.textfield.TextInputLayout
 import com.zvonimirplivelic.parkingzg.R
 import com.zvonimirplivelic.parkingzg.db.model.Vehicle
 import com.zvonimirplivelic.parkingzg.viewmodel.ParkingZgViewModel
@@ -23,9 +26,9 @@ class AddVehicleFragment : Fragment() {
 
     private lateinit var ivVehicleImage: ImageView
     private lateinit var ibCamera: ImageButton
-    private lateinit var etVehicleModel: EditText
-    private lateinit var etVehicleManufacturer: EditText
-    private lateinit var etVehicleRegistrationNumber: EditText
+    private lateinit var etVehicleModel: TextInputLayout
+    private lateinit var etVehicleManufacturer: TextInputLayout
+    private lateinit var etVehicleRegistrationNumber: TextInputLayout
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,7 +40,7 @@ class AddVehicleFragment : Fragment() {
         viewModel = ViewModelProvider(this)[ParkingZgViewModel::class.java]
 
         ivVehicleImage = view.findViewById(R.id.iv_add_vehicle_image)
-        ibCamera = view.findViewById(R.id.ib_update_camera_intent)
+        ibCamera = view.findViewById(R.id.ib_add_camera_intent)
         etVehicleModel = view.findViewById(R.id.et_vehicle_model)
         etVehicleManufacturer = view.findViewById(R.id.et_vehicle_manufacturer)
         etVehicleRegistrationNumber = view.findViewById(R.id.et_vehicle_registration_number)
@@ -77,9 +80,9 @@ class AddVehicleFragment : Fragment() {
     }
 
     private fun addVehicleToDatabase() {
-        val vehicleModel = etVehicleModel.text.toString()
-        val vehicleManufacturer = etVehicleManufacturer.text.toString()
-        val vehicleRegistrationNumber = etVehicleRegistrationNumber.text.toString()
+        val vehicleModel = etVehicleModel.editText?.text.toString()
+        val vehicleManufacturer = etVehicleManufacturer.editText?.text.toString()
+        val vehicleRegistrationNumber = etVehicleRegistrationNumber.editText?.text.toString()
         val vehicleImage: Bitmap = ivVehicleImage.drawable.toBitmap()
 
         if (validateUserInput(vehicleModel, vehicleManufacturer, vehicleRegistrationNumber)) {
