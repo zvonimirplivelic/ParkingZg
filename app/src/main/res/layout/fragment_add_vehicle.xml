@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:contentDescription="Vehicle image"
+        android:contentDescription="@string/iv_add_vehicle_img_desc"
         android:minHeight="256dp"
         android:padding="16dp"
         android:src="@drawable/ic_vehicle_placeholder"
@@ -21,13 +21,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/ib_update_camera_intent"
+        android:id="@+id/ib_add_camera_intent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_camera"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="Take picture of your vehicle" />
+        android:contentDescription="@string/ib_add_image_img_desc" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/et_vehicle_manufacturer"
@@ -35,7 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:hint="Vehicle manufacturer:"
+        android:hint="@string/et_vehicle_manufacturer_hint"
         android:outlineAmbientShadowColor="@color/blue_700"
         android:outlineSpotShadowColor="@color/blue_200"
         android:textColor="@color/black"
@@ -58,7 +58,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:hint="Vehicle model:"
+        android:hint="@string/et_vehicle_model_hint"
         android:outlineAmbientShadowColor="@color/blue_700"
         android:outlineSpotShadowColor="@color/blue_200"
         android:textColor="@color/black"
@@ -81,7 +81,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:hint="Vehicle registration number(ZG0123AA)"
+        android:hint="@string/et_vehicle_registration_hint"
         android:outlineAmbientShadowColor="@color/blue_700"
         android:outlineSpotShadowColor="@color/blue_200"
         android:textColor="@color/black"
